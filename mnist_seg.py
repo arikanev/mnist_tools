@@ -11,8 +11,8 @@ start = timer()  # init timer
 #argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--threshold', '--t', type=int, default=128, help='threshold for masks')
-parser.add_argument('--save_path', '--s', type=string, default=os.getcwd(), help='save path')
-parser.add_argument('--pkl_path', '--p', type=string, default=os.path.join(os.getcwd(),'mnist.pkl'), help='path to mnist pkl file'
+parser.add_argument('--save_path', '--s', type=str, default=os.getcwd(), help='save path')
+parser.add_argument('--pkl_path', '--p', type=str, default=os.path.join(os.getcwd(),'mnist.pkl'), help='path to mnist pkl file')
 args = parser.parse_args()
 
 # load mnist data
