@@ -1,2 +1,2 @@
-# mnistmPytorchLoader
-load mnist-m into pytorch using the existing DataLoader class
+# mnist tools
+scripts for the mnist use-cases you may encounter
