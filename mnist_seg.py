@@ -77,7 +77,7 @@ for i in range(len(mnist_data)):
 
             # create mask, copy rgb_im to avoid overwriting array
 
-            rgb_mask = rgb_im
+            rgb_mask = np.copy(rgb_im)
             black_mask = rgb_im < args.threshold
             white_mask = rgb_im > args.threshold - 1
             rgb_mask[black_mask] = 0
