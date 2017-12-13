@@ -1,2 +1,4 @@
-# mnist tools
-scripts for the mnist use-cases you may encounter
+# mnist tools:
+
+# 1. mnist_seg.py
+
