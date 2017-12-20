@@ -75,15 +75,15 @@ for i in range(len(mnist_data)):
 
             curr_image = Image.fromarray(rgb_im)
 
-            # create mask, copy rgb_im to avoid overwriting array
+            # create mask, copy to avoid overwriting array
 
-            rgb_mask = np.copy(rgb_im)
-            black_mask = rgb_im < args.threshold
-            white_mask = rgb_im > args.threshold - 1
-            rgb_mask[black_mask] = 0
-            rgb_mask[white_mask] = 255
+            greyscale_mask = np.copy(curr_data_normalized)
+            black_mask = curr_data_normalized < args.threshold
+            white_mask = curr_data_normalized > args.threshold - 1
+            greyscale_mask[black_mask] = 0
+            greyscale_mask[white_mask] = 255
 
-            curr_mask = Image.fromarray(rgb_mask)
+            curr_mask = Image.fromarray(greyscale_mask)
 
         else:
             # keep single channel greyscale
@@ -100,24 +100,36 @@ for i in range(len(mnist_data)):
 
             curr_mask = Image.fromarray(greyscale_mask)
     
-        # make directories
-        if not os.path.exists(os.path.dirname(curr_im_path)):
+        # make image directories
+        if not os.path.exists(curr_im_path):
             try:
                 os.makedirs(os.path.dirname(curr_im_path))
-                os.makedirs(os.path.dirname(curr_mask_path))
             except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
 
-        # save image
+            # save image
+            curr_image.save(curr_im_path)
+            print('saved im number {} in {} set'.format(str(j).zfill(5), set_type))
+        
+        else:
 
-        curr_image.save(curr_im_path)
+            print('im number {} in {} set exists'.format(str(j).zfill(5), set_type))
 
-        # save mask
+        # make mask directories
+        if not os.path.exists(curr_mask_path):
+            try:
+                os.makedirs(os.path.dirname(curr_mask_path))
+            except OSError as exc:
+                if exc.errno != errno.EEXIST:
+                    raise
+            # save mask
+            curr_mask.save(curr_mask_path)
+            print('saved mask number {} in {} set'.format(str(j).zfill(5), set_type))
 
-        curr_mask.save(curr_mask_path)
-
-        print('saved im and mask number {} in {} set'.format(str(j).zfill(5), set_type))
+        else:
+            
+            print('mask number {} in {} set exists'.format(str(j).zfill(5), set_type))
 
 end = timer()  # end timer
 
