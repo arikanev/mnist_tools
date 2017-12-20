@@ -5,7 +5,7 @@ A script for generating an mnist segmentation dataset, mnist segmentations are u
 
 Run with
 ```
-python mnist_seg.py --t mask_threshold (int) --s save_path (str) --p pkl_path (str)
+python mnist_seg.py --t mask_threshold (int) --s save_path (str) --p pkl_path (str) --RGB
 ```
 
 # mnistmPytorchLoader.py
