@@ -6,11 +6,19 @@ import argparse
 from PIL import Image
 from resizeimage import resizeimage
 
-mnist_data_path = '/data/lisa/data/mnist/mnist_seg/'
 
-imgnet_data_path = 'imagenet/train_32x32'
+# argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--imgnet_path', '--ip', type=int, default=128, help='path to imagenet data')
+parser.add_argument('--save_path', '--sp', type=str, default=os.getcwd(), help='path to save')
+parser.add_argument('--mnist_path', '--mp', type=str, default=os.path.join(os.getcwd(),'mnist'), help='path to mnist')
+args = parser.parse_args()
 
-mnistm_data_path = '/data/lisa/data/mnistm/images/'
+mnist_data_path = args.mnist_path
+
+imgnet_data_path = args.imgnet_path
+
+mnistm_data_path = args.save_path
 
 for i in range(3):  # train, test, val
 
@@ -25,7 +33,7 @@ for i in range(3):  # train, test, val
     curr_mnist_set_length = len(curr_mnist_set_path)
 
     # create list of imagenet images, resize to 28x28
- 
+
     hashable_imgnet_list = []
 
     imgnet_count = 0
